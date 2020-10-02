@@ -1,0 +1,17 @@
+version: "3"
+volumes:
+  postgis-data:
+
+services:
+    postgis:
+      image: kartoza/postgis
+      volumes:
+        - /home/martin/Dokumenty/skola/pdt/db:/var/lib/postgresql
+      ports:
+        - "5432:5432"
+      environment:
+        # If you need to create multiple database you can add coma separated databases eg gis,data
+        - POSTGRES_DB=tweets
+        - POSTGRES_USER=postgres    # Here it's important to keep the same name as the one configured inside ops_settings_docker.yml
+        - POSTGRES_PASS=postgres        # Here it's important to keep the same name as the one configured inside ops_settings_docker.yml
+        - POSTGRES_DBNAME=tweets        # Here it's important to keep the same name as the one configured inside ops_settings_docker.yml
