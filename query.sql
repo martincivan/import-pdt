@@ -29,20 +29,20 @@ CREATE INDEX ON tweets (content);
 
 create extension pageinspect;
 select * from bt_metap('tweets_content_idx');
-select type, live_items, dead_items, avg_item_size, page_size, free_size from bt_page_stats('tweets_content_idx',1000)
+select type, live_items, dead_items, avg_item_size, page_size, free_size from bt_page_stats('tweets_content_idx',1000);
 select itemoffset, itemlen, data from bt_page_items('tweets_content_idx',1) limit 1000;
 
 
 select * from bt_metap('tweets_retweet_count_idx');
-select type, live_items, dead_items, avg_item_size, page_size, free_size from bt_page_stats('tweets_retweet_count_idx',1000)
+select type, live_items, dead_items, avg_item_size, page_size, free_size from bt_page_stats('tweets_retweet_count_idx',1000);
 select itemoffset, itemlen, data from bt_page_items('tweets_retweet_count_idx',1) limit 1000;
 
 
 select * from bt_metap('accounts_followers_count_idx');
-select type, live_items, dead_items, avg_item_size, page_size, free_size from bt_page_stats('accounts_followers_count_idx',1000)
+select type, live_items, dead_items, avg_item_size, page_size, free_size from bt_page_stats('accounts_followers_count_idx',1000);
 select itemoffset, itemlen, data from bt_page_items('accounts_followers_count_idx',1) limit 1000;
 
 
 select * from bt_metap('accounts_screen_name_idx');
-select type, live_items, dead_items, avg_item_size, page_size, free_size from bt_page_stats('accounts_screen_name_idx',1000)
+select type, live_items, dead_items, avg_item_size, page_size, free_size from bt_page_stats('accounts_screen_name_idx',1000);
 select itemoffset, itemlen, data from bt_page_items('accounts_screen_name_idx',1) limit 1000;
