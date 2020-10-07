@@ -1,18 +1,19 @@
 1. Vyhľadajte v accounts screen_name s presnou hodnotou ‘realDonaldTrump’ a analyzujte daný select. Akú metódu vám vybral plánovač?
     - `SELECT * FROM accounts WHERE screen_name = 'realDonaldTrump'`
-    -  `-> Parallel Seq Scan on accounts`
+    -  -> Parallel Seq Scan on accounts
 
 2. Koľko workerov pracovalo na danom selecte? Zdvihnite počet workerov a povedzte ako to  ovplyvňuje čas. Je tam nejaký strop?
     - 2 workery
     - PRED: `Planning Time: 0.044 ms
             Execution Time: 143.643 ms`
-    - po zvyseni na 3: `Planning Time: 0.050 ms
+    - po zvýšení na 3: `Planning Time: 0.050 ms
                        Execution Time: 111.803 ms`
     - `SET max_parallel_workers_per_gather TO 3;`
-    - po zvyseni na 8 (pouzili sa 4): `Planning Time: 0.046 ms
+    - po zvýšení na 8 (použili sa 4): `Planning Time: 0.046 ms
                        Execution Time: 93.282 ms`
-    - pri viac workeroch cas klesa na, maximalne sa daju pouzit 4 workery
-     
+    - pri viac workeroch čas klesá na, maximálne sa dajú použiť 4 workery
+    - strop je nastavenie v konfiguračnom súbore servera, prípadne počet jadier stroja
+       
 3. Vytvorte index nad screen_name a pozrite ako sa zmenil a porovnajte výstup oproti požiadavke bez indexu. Potrebuje plánovač v tejto požiadavke viac workerov? Bol tu aplikovaný nejaký filter na riadky? Prečo?
     - BEZ INDEXU:
     ```
@@ -35,8 +36,9 @@
     Execution Time: 0.047 ms
     ```
     
-    - Pouzije sa index scan - aplikovany filter na riadky index condition podla screen name.
-    - Predlzil sa cas planovania, skratil sa cas vykonavania. Viac workerov sa nepouzije, lebo index scan s 1 podmienkou sa neda paralelizovat.
+    - Použije sa index scan - nepoužije sa filter na riadky, použije sa len index condition podla screen name.
+    - Predĺžil sa čas plánovania, skrátil sa čas vykonávania. 
+    - Viac workerov sa nepoužije, lebo index scan s 1 podmienkou sa nedá paralelizovať.
 
 4. Vyberte používateľov, ktorý majú followers_count väčší, rovný ako 100 a zároveň menší, rovný 200. Je správanie rovnaké v prvej úlohe? Je správanie rovnaké ako  v druhej úlohe? Prečo?
     - `SELECT * FROM accounts WHERE followers_count >= 100 AND followers_count <= 200;`
@@ -51,7 +53,7 @@
     "  Timing: Generation 0.280 ms, Inlining 0.000 ms, Optimization 0.193 ms, Emission 2.438 ms, Total 2.911 ms"
     Execution Time: 524.913 ms
     ``` 
-    - Spravanie nie je rovnake ani ako v 1. ani ako v 2. ulohe
+    - Spravanie nie je rovnake ani ako v 1. ani ako v 2. ulohe, lebo sa nerobí paralel sequence scan.
     
 5. Vytvorte index nad 4 úlohou a popíšte prácu s indexom. Čo je to Bitmap Index Scan a prečo  je tam Bitmap Heap Scan? Prečo je tam recheck condition?
     - `CREATE INDEX ON accounts (followers_count);`
@@ -65,7 +67,9 @@
        Planning Time: 0.144 ms
        Execution Time: 480.839 ms
     ```
-   - Bitmap index scan je tam kvoli zlozenej podmienke, vytvori sa bitova maska riadkov pre 1. podmienku a pre 2. podmienku a potom sa najdu riadky, ktore vyhovuju naraz obom podmienkam
+   - Bitmap index scan je tam kvoli použitiu bitmap indexu.
+   - Vytvori sa bitova maska riadkov pre 1. podmienku a pre 2. podmienku a potom sa najdu riadky, ktore vyhovuju naraz obom podmienkam pomocou bitovej operácie AND
+   - Recheck condition sa použije je v prípade, keď by bitové masky zabrali veľa miesta a teda sa vytvoria len pre celé stránky, avšak záznamy v nich je nutné potom znovu skontrolovať.
    
 6. Vyberte používateľov, ktorí majú followers_count väčší, rovný ako 100 a zároveň menší, rovný 1000? V čom je rozdiel, prečo?
     - `SELECT * FROM accounts WHERE followers_count >= 100 AND followers_count <= 1000;`
@@ -82,7 +86,7 @@
        "  Timing: Generation 0.491 ms, Inlining 0.000 ms, Optimization 0.000 ms, Emission 0.000 ms, Total 0.491 ms"
        Execution Time: 493.820 ms
     ```
-   - pribudol recheck cond 
+   - pribudla sekcia JIT aby pri vyhodnocovaní nad viac záznamamy bolo spracovanie rýchlejšie
    
 7. Vytvorte daľšie 3 indexy na name, friends_count, a description a insertnite si  svojho používateľa (to je jedno aké dáta) do accounts. Koľko to trvalo? Dropnite indexy a spravte to ešte raz. Prečo je tu rozdiel?
     - `CREATE INDEX ON accounts (name);`
@@ -100,16 +104,16 @@
     - trvalo 17ms
     - `INSERT INTO accounts (id, screen_name, name, description, followers_count, friends_count, statuses_count) VALUES (2, 'to je jedno', 'to_je_jedno', 'To je jedno ake data', 200, 20, 2);` 
     - trvalo 14ms
-    - Rozdiel je, lebo pri zapise treba aj upravovat vsetky indexy, co chvilku trva.
+    - Rozdiel je, lebo pri každom zápise treba aj upravovať všetky indexy, čo chvíľku trvá.
 
-8. Vytvorte index nad tweetami pre retweet_count a pre content. Porovnajte ich dĺžku vytvárania. Prečo je tu taký rozdiel?
+8. Vytvorte index nad tweetami pre retweet_count a pre content. Porovnajte ich dĺžku vytvárania. Prečo je tu taký rozdiel?
 
     - `CREATE INDEX ON tweets (retweet_count);`
     - trvalo 8.5s
     - `CREATE INDEX ON tweets (content);`
     - trvalo 33.9s
-    - Rozdiel je, lebo v 1. pripade indexujeme iba cisla, v druhom pripade indexujeme textove hodnoty
-9. Porovnajte indexy pre retweet_count, content, followers_count, screen_name,... v čom sa líšia a prečo (stačí stručne)?
+    - Rozdiel je, lebo v 1. pripade indexujeme iba čísla, v druhom pripade indexujeme textové hodnoty
+9. Porovnajte indexy pre retweet_count, content, followers_count, screen_name,... v čom sa líšia a prečo (stačí stručne)?
     - a. create extension pageinspect;
     - b. select * from bt_metap('idx_content');
     - c. select type, live_items, dead_items, avg_item_size, page_size, free_size from bt_page_stats('idx_content',1000);
