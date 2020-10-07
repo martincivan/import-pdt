@@ -56,7 +56,8 @@
 5. Vytvorte index nad 4 úlohou a popíšte prácu s indexom. Čo je to Bitmap Index Scan a prečo  je tam Bitmap Heap Scan? Prečo je tam recheck condition?
     - `CREATE INDEX ON accounts (followers_count);`
     - `SELECT * FROM accounts WHERE followers_count >= 100 AND followers_count <= 200;`
-    ```Bitmap Heap Scan on accounts  (cost=6750.25..86803.22 rows=428665 width=122) (actual time=49.805..466.929 rows=422237 loops=1)
+    ```
+        Bitmap Heap Scan on accounts  (cost=6750.25..86803.22 rows=428665 width=122) (actual time=49.805..466.929 rows=422237 loops=1)
          Recheck Cond: ((followers_count >= 100) AND (followers_count <= 200))
          Heap Blocks: exact=73127
          ->  Bitmap Index Scan on accounts_followers_count_idx  (cost=0.00..6643.08 rows=428665 width=0) (actual time=38.788..38.788 rows=422237 loops=1)
@@ -68,7 +69,8 @@
    
 6. Vyberte používateľov, ktorí majú followers_count väčší, rovný ako 100 a zároveň menší, rovný 1000? V čom je rozdiel, prečo?
     - `SELECT * FROM accounts WHERE followers_count >= 100 AND followers_count <= 1000;`
-    ```Bitmap Heap Scan on accounts  (cost=23780.91..120061.20 rows=1510486 width=122) (actual time=123.633..447.429 rows=1504549 loops=1)
+    ```
+       Bitmap Heap Scan on accounts  (cost=23780.91..120061.20 rows=1510486 width=122) (actual time=123.633..447.429 rows=1504549 loops=1)
          Recheck Cond: ((followers_count >= 100) AND (followers_count <= 1000))
          Heap Blocks: exact=73621
          ->  Bitmap Index Scan on accounts_followers_count_idx  (cost=0.00..23403.29 rows=1510486 width=0) (actual time=113.141..113.141 rows=1504549 loops=1)
