@@ -199,4 +199,5 @@
     | 2          | 16      | 05 5f 00 5f 00 00 00 00 |
     | 3          | 16      | 0f 5f 5f 5f 5f 5f 5f 00 |
     
-    - Lisia sa v dlzkach a samotnych datach (pochopitelne - lebo maju rozne stlpce a rozne typy chodnot: text - cisla). Taktiez sa lisia v hlbkach kvoli rozdielnej kardinalite. 
+    - líšia sa v mohutnosti (`live_items`) a index nad obsahom tweetov sa líši aj v hĺbke (`level`). 
+    - priemernú veľkosť položky majú rozdielne indexy nad číselnými a textovými stĺpcami - lebo pochopiteľne textová položka má zvyčajne inú veľkosť, než číselná, ktorá má zvyčajne fixne definovanú veľkosť.
