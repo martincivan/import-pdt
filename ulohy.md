@@ -1,20 +1,55 @@
-1. Vyhľadajte v accounts screen_name s presnou hodnotou ‘realDonaldTrump’ a analyzujte daný select. Akú metódu vám vybral plánovač?
+1. **Vyhľadajte v accounts screen_name s presnou hodnotou ‘realDonaldTrump’ a analyzujte daný select. Akú metódu vám vybral plánovač?**
     - `SELECT * FROM accounts WHERE screen_name = 'realDonaldTrump'`
     -  -> Parallel Seq Scan on accounts
-
-2. Koľko workerov pracovalo na danom selecte? Zdvihnite počet workerov a povedzte ako to  ovplyvňuje čas. Je tam nejaký strop?
+    - ```
+      Gather  (cost=1000.00..92687.80 rows=1 width=122) (actual time=786.947..874.206 rows=1 loops=1)
+        Workers Planned: 2
+        Workers Launched: 2
+        ->  Parallel Seq Scan on accounts  (cost=0.00..91687.70 rows=1 width=122) (actual time=789.167..796.237 rows=0 loops=3)
+              Filter: ((screen_name)::text = 'realDonaldTrump'::text)
+              Rows Removed by Filter: 1156141
+      Planning Time: 5.432 ms
+      Execution Time: 874.250 ms```
+2. **Koľko workerov pracovalo na danom selecte? Zdvihnite počet workerov a povedzte ako to  ovplyvňuje čas. Je tam nejaký strop?**
     - 2 workery
-    - PRED: `Planning Time: 0.044 ms
-            Execution Time: 143.643 ms`
-    - po zvýšení na 3: `Planning Time: 0.050 ms
-                       Execution Time: 111.803 ms`
-    - `SET max_parallel_workers_per_gather TO 3;`
-    - po zvýšení na 8 (použili sa 4): `Planning Time: 0.046 ms
-                       Execution Time: 93.282 ms`
-    - pri viac workeroch čas klesá na, maximálne sa dajú použiť 4 workery
+        - `Planning Time: 5.432 ms`
+        - `Execution Time: 874.250 ms`
+    - po zvýšení na 3: 
+        - `SET max_parallel_workers_per_gather TO 3;`
+        - ``` 
+          Gather  (cost=1000.00..88608.68 rows=1 width=122) (actual time=309.024..331.010 rows=1 loops=1)
+             Workers Planned: 3
+             Workers Launched: 3
+             ->  Parallel Seq Scan on accounts  (cost=0.00..87608.58 rows=1 width=122) (actual time=295.351..299.325 rows=0 loops=4)
+                   Filter: ((screen_name)::text = 'realDonaldTrump'::text)
+                   Rows Removed by Filter: 867106
+           Planning Time: 0.091 ms
+           Execution Time: 331.042 ms```
+    - po zvýšení na 4:
+        - ```
+            Gather  (cost=1000.00..85461.92 rows=1 width=122) (actual time=260.660..313.972 rows=1 loops=1)
+              Workers Planned: 4
+              Workers Launched: 4
+              ->  Parallel Seq Scan on accounts  (cost=0.00..84461.82 rows=1 width=122) (actual time=261.526..264.538 rows=0 loops=5)
+                    Filter: ((screen_name)::text = 'realDonaldTrump'::text)
+                    Rows Removed by Filter: 693684
+            Planning Time: 0.147 ms
+            Execution Time: 314.026 ms```
+    - po zvýšení na 8 (použili sa však opäť len 4): 
+        - ```
+            Gather  (cost=1000.00..85461.92 rows=1 width=122) (actual time=268.771..297.035 rows=1 loops=1)
+              Workers Planned: 4
+              Workers Launched: 4
+              ->  Parallel Seq Scan on accounts  (cost=0.00..84461.82 rows=1 width=122) (actual time=257.559..260.693 rows=0 loops=5)
+                    Filter: ((screen_name)::text = 'realDonaldTrump'::text)
+                    Rows Removed by Filter: 693684
+            Planning Time: 0.091 ms
+            Execution Time: 297.084 ms
+            ```
+    - pri viac workeroch čas vykonávania klesá, maximálne sa použili 4 workery
     - strop je nastavenie v konfiguračnom súbore servera, prípadne počet jadier stroja
        
-3. Vytvorte index nad screen_name a pozrite ako sa zmenil a porovnajte výstup oproti požiadavke bez indexu. Potrebuje plánovač v tejto požiadavke viac workerov? Bol tu aplikovaný nejaký filter na riadky? Prečo?
+3. **Vytvorte index nad screen_name a pozrite ako sa zmenil a porovnajte výstup oproti požiadavke bez indexu. Potrebuje plánovač v tejto požiadavke viac workerov? Bol tu aplikovaný nejaký filter na riadky? Prečo?**
     - BEZ INDEXU:
     ```
     Gather  (cost=1000.00..88615.21 rows=1 width=122) (actual time=110.196..111.784 rows=1 loops=1)
@@ -40,7 +75,7 @@
     - Predĺžil sa čas plánovania, skrátil sa čas vykonávania. 
     - Viac workerov sa nepoužije, lebo index scan s 1 podmienkou sa nedá paralelizovať.
 
-4. Vyberte používateľov, ktorý majú followers_count väčší, rovný ako 100 a zároveň menší, rovný 200. Je správanie rovnaké v prvej úlohe? Je správanie rovnaké ako  v druhej úlohe? Prečo?
+4. **Vyberte používateľov, ktorý majú followers_count väčší, rovný ako 100 a zároveň menší, rovný 200. Je správanie rovnaké v prvej úlohe? Je správanie rovnaké ako  v druhej úlohe? Prečo?**
     - `SELECT * FROM accounts WHERE followers_count >= 100 AND followers_count <= 200;`
     ```
     Seq Scan on accounts  (cost=0.00..125649.32 rows=428665 width=122) (actual time=2.761..474.060 rows=422237 loops=1)
@@ -55,7 +90,7 @@
     ``` 
     - Spravanie nie je rovnake ani ako v 1. ani ako v 2. ulohe, lebo sa nerobí paralel sequence scan.
     
-5. Vytvorte index nad 4 úlohou a popíšte prácu s indexom. Čo je to Bitmap Index Scan a prečo  je tam Bitmap Heap Scan? Prečo je tam recheck condition?
+5. **Vytvorte index nad 4 úlohou a popíšte prácu s indexom. Čo je to Bitmap Index Scan a prečo  je tam Bitmap Heap Scan? Prečo je tam recheck condition?**
     - `CREATE INDEX ON accounts (followers_count);`
     - `SELECT * FROM accounts WHERE followers_count >= 100 AND followers_count <= 200;`
     ```
@@ -71,7 +106,7 @@
    - Vytvori sa bitova maska riadkov pre 1. podmienku a pre 2. podmienku a potom sa najdu riadky, ktore vyhovuju naraz obom podmienkam pomocou bitovej operácie AND
    - Recheck condition sa použije je v prípade, keď by bitové masky zabrali veľa miesta a teda sa vytvoria len pre celé stránky, avšak záznamy v nich je nutné potom znovu skontrolovať.
    
-6. Vyberte používateľov, ktorí majú followers_count väčší, rovný ako 100 a zároveň menší, rovný 1000? V čom je rozdiel, prečo?
+6. **Vyberte používateľov, ktorí majú followers_count väčší, rovný ako 100 a zároveň menší, rovný 1000? V čom je rozdiel, prečo?**
     - `SELECT * FROM accounts WHERE followers_count >= 100 AND followers_count <= 1000;`
     ```
        Bitmap Heap Scan on accounts  (cost=23780.91..120061.20 rows=1510486 width=122) (actual time=123.633..447.429 rows=1504549 loops=1)
@@ -88,7 +123,7 @@
     ```
    - pribudla sekcia JIT aby pri vyhodnocovaní nad viac záznamamy bolo spracovanie rýchlejšie
    
-7. Vytvorte daľšie 3 indexy na name, friends_count, a description a insertnite si  svojho používateľa (to je jedno aké dáta) do accounts. Koľko to trvalo? Dropnite indexy a spravte to ešte raz. Prečo je tu rozdiel?
+7. **Vytvorte daľšie 3 indexy na name, friends_count, a description a insertnite si  svojho používateľa (to je jedno aké dáta) do accounts. Koľko to trvalo? Dropnite indexy a spravte to ešte raz. Prečo je tu rozdiel?**
     - `CREATE INDEX ON accounts (name);`
     - `CREATE INDEX ON accounts (friends_count);`
     - `CREATE INDEX ON accounts (description);`
@@ -106,14 +141,14 @@
     - trvalo 14ms
     - Rozdiel je, lebo pri každom zápise treba aj upravovať všetky indexy, čo chvíľku trvá.
 
-8. Vytvorte index nad tweetami pre retweet_count a pre content. Porovnajte ich dĺžku vytvárania. Prečo je tu taký rozdiel?
+8. **Vytvorte index nad tweetami pre retweet_count a pre content. Porovnajte ich dĺžku vytvárania. Prečo je tu taký rozdiel?**
 
     - `CREATE INDEX ON tweets (retweet_count);`
     - trvalo 8.5s
     - `CREATE INDEX ON tweets (content);`
     - trvalo 33.9s
     - Rozdiel je, lebo v 1. pripade indexujeme iba čísla, v druhom pripade indexujeme textové hodnoty
-9. Porovnajte indexy pre retweet_count, content, followers_count, screen_name,... v čom sa líšia a prečo (stačí stručne)?
+9. **Porovnajte indexy pre retweet_count, content, followers_count, screen_name,... v čom sa líšia a prečo (stačí stručne)?**
     - a. create extension pageinspect;
     - b. select * from bt_metap('idx_content');
     - c. select type, live_items, dead_items, avg_item_size, page_size, free_size from bt_page_stats('idx_content',1000);
