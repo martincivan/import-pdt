@@ -107,21 +107,20 @@
    - Recheck condition sa použije je v prípade, keď by bitové masky zabrali veľa miesta a teda sa vytvoria len pre celé stránky, avšak záznamy v nich je nutné potom znovu skontrolovať.
    
 6. **Vyberte používateľov, ktorí majú followers_count väčší, rovný ako 100 a zároveň menší, rovný 1000? V čom je rozdiel, prečo?**
-    - `SELECT * FROM accounts WHERE followers_count >= 100 AND followers_count <= 1000;`
+    - `SELECT * FROM accounts WHERE followers_count >= 50 AND followers_count < 1500;`
     ```
-       Bitmap Heap Scan on accounts  (cost=23780.91..120061.20 rows=1510486 width=122) (actual time=123.633..447.429 rows=1504549 loops=1)
-         Recheck Cond: ((followers_count >= 100) AND (followers_count <= 1000))
-         Heap Blocks: exact=73621
-         ->  Bitmap Index Scan on accounts_followers_count_idx  (cost=0.00..23403.29 rows=1510486 width=0) (actual time=113.141..113.141 rows=1504549 loops=1)
-               Index Cond: ((followers_count >= 100) AND (followers_count <= 1000))
-       Planning Time: 0.084 ms
+       Seq Scan on accounts  (cost=0.00..125649.35 rows=2001819 width=122) (actual time=5.539..1040.104 rows=2018912 loops=1)
+         Filter: ((followers_count >= 50) AND (followers_count < 1500))
+         Rows Removed by Filter: 1449512
+       Planning Time: 10.958 ms
        JIT:
          Functions: 2
        "  Options: Inlining false, Optimization false, Expressions true, Deforming true"
-       "  Timing: Generation 0.491 ms, Inlining 0.000 ms, Optimization 0.000 ms, Emission 0.000 ms, Total 0.491 ms"
-       Execution Time: 493.820 ms
+       "  Timing: Generation 0.420 ms, Inlining 0.000 ms, Optimization 0.306 ms, Emission 5.017 ms, Total 5.744 ms"
+       Execution Time: 1212.875 ms
     ```
    - pribudla sekcia JIT aby pri vyhodnocovaní nad viac záznamamy bolo spracovanie rýchlejšie
+   - použil sa sequence scan, lebo plánovač usúdil, že pri takejto podmienke bude rýchlejšie spraviť scan, lebo prehľadanie indexu by nenašlo tie riadky rýchlejšie pri takomto rozsahu podmienky a distribúcií hodnôt v stĺpci.
    
 7. **Vytvorte daľšie 3 indexy na name, friends_count, a description a insertnite si  svojho používateľa (to je jedno aké dáta) do accounts. Koľko to trvalo? Dropnite indexy a spravte to ešte raz. Prečo je tu rozdiel?**
     - `CREATE INDEX ON accounts (name);`
