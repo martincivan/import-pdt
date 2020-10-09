@@ -1,6 +1,6 @@
 1. **Vyhľadajte v accounts screen_name s presnou hodnotou ‘realDonaldTrump’ a analyzujte daný select. Akú metódu vám vybral plánovač?**
     - `SELECT * FROM accounts WHERE screen_name = 'realDonaldTrump'`
-    -  -> Parallel Seq Scan on accounts
+    -  Vybral Parallel Seq Scan on accounts - nemal moc na výber, nie je tam zatiaľ index.
     - ```
       Gather  (cost=1000.00..92687.80 rows=1 width=122) (actual time=786.947..874.206 rows=1 loops=1)
         Workers Planned: 2
@@ -46,7 +46,7 @@
             Planning Time: 0.091 ms
             Execution Time: 297.084 ms
             ```
-    - pri viac workeroch čas vykonávania klesá, maximálne sa použili 4 workery
+    - pri viac workeroch čas vykonávania klesá lebo sa hľadá paralelne, maximálne sa použili 4 workery
     - strop je nastavenie v konfiguračnom súbore servera, prípadne počet jadier stroja
        
 3. **Vytvorte index nad screen_name a pozrite ako sa zmenil a porovnajte výstup oproti požiadavke bez indexu. Potrebuje plánovač v tejto požiadavke viac workerov? Bol tu aplikovaný nejaký filter na riadky? Prečo?**
@@ -88,7 +88,7 @@
     "  Timing: Generation 0.280 ms, Inlining 0.000 ms, Optimization 0.193 ms, Emission 2.438 ms, Total 2.911 ms"
     Execution Time: 524.913 ms
     ``` 
-    - Spravanie nie je rovnake ani ako v 1. ani ako v 2. ulohe, lebo sa nerobí paralel sequence scan.
+    - Spravanie nie je rovnake ani ako v 1. ani ako v 2. ulohe, lebo sa nerobí parallel sequence scan.
     
 5. **Vytvorte index nad 4 úlohou a popíšte prácu s indexom. Čo je to Bitmap Index Scan a prečo  je tam Bitmap Heap Scan? Prečo je tam recheck condition?**
     - `CREATE INDEX ON accounts (followers_count);`
@@ -102,9 +102,8 @@
        Planning Time: 0.144 ms
        Execution Time: 480.839 ms
     ```
-   - Bitmap index scan je tam kvoli použitiu bitmap indexu.
-   - Vytvori sa bitova maska riadkov pre 1. podmienku a pre 2. podmienku a potom sa najdu riadky, ktore vyhovuju naraz obom podmienkam pomocou bitovej operácie AND
-   - Recheck condition sa použije je v prípade, keď by bitové masky zabrali veľa miesta a teda sa vytvoria len pre celé stránky, avšak záznamy v nich je nutné potom znovu skontrolovať.
+   - Bitmap index scan je tam na vytvorenie bitových masiek pre hodnoty v indexe a Bitmap heap scan potom aplikovaním bitovej operácie získa výstupnú množinu údajov.
+   - Recheck condition sa použije je v prípade, keď by bitové masky zabrali veľa miesta a teda sa vytvoria len pre celé stránky, avšak záznamy v nich je nutné potom znovu skontrolovať po jednom.
    
 6. **Vyberte používateľov, ktorí majú followers_count väčší, rovný ako 100 a zároveň menší, rovný 1000? V čom je rozdiel, prečo?**
     - `SELECT * FROM accounts WHERE followers_count >= 50 AND followers_count < 1500;`
@@ -134,8 +133,6 @@
     - `drop index accounts_name_idx;`
     - `drop index accounts_friends_count_idx;`
     - `drop index accounts_description_idx;`
-    - `INSERT INTO accounts (id, screen_name, name, description, followers_count, friends_count, statuses_count) VALUES (1, 'moj pouzivatel', 'moj_pouzivatel', 'moj pouzivatel', 100, 10, 1);`
-    - trvalo 17ms
     - `INSERT INTO accounts (id, screen_name, name, description, followers_count, friends_count, statuses_count) VALUES (2, 'to je jedno', 'to_je_jedno', 'To je jedno ake data', 200, 20, 2);` 
     - trvalo 14ms
     - Rozdiel je, lebo pri každom zápise treba aj upravovať všetky indexy, čo chvíľku trvá.
@@ -146,7 +143,7 @@
     - trvalo 8.5s
     - `CREATE INDEX ON tweets (content);`
     - trvalo 33.9s
-    - Rozdiel je, lebo v 1. pripade indexujeme iba čísla, v druhom pripade indexujeme textové hodnoty
+    - Rozdiel je, lebo v 1. pripade indexujeme iba čísla, v druhom pripade indexujeme textové hodnoty, ktoré sú dlhšie a je ich viac
 9. **Porovnajte indexy pre retweet_count, content, followers_count, screen_name,... v čom sa líšia a prečo (stačí stručne)?**
     - a. create extension pageinspect;
     - b. select * from bt_metap('idx_content');
