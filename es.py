@@ -28,35 +28,33 @@ def process_file(file):
         # print("insert successfull")
 
 
-def preprocess_object(obj):
+def preprocess_object(obj, recursive=False):
     return {
         "id": obj["id"],
         "created_at": obj["created_at"],
         "full_text": obj["full_text"],
         "entities": {
-            "hashtags": list(map(lambda o: {"text": o["text"]}, obj["entities"]["hashtags"])),
+            "hashtags": list(map(lambda o: o["text"], obj["entities"]["hashtags"])),
             "user_mentions": list(
                 map(lambda o: {"screen_name": o["screen_name"], "name": o["name"], "id": o["id"]},
                     obj["entities"]["user_mentions"]))
         },
+        "coordinates": obj["coordinates"]["coordinates"] if obj["coordinates"] is not None else None,
         "source": obj["source"],
         "in_reply_to_status_id": obj["in_reply_to_status_id"],
         "retweet_count": obj["retweet_count"],
         "favorite_count": obj["favorite_count"],
-        "user_mentions": list(
-            map(lambda o: {"screen_name": o["screen_name"], "name": o["name"], "id": o["id"]},
-                obj["entities"]["user_mentions"])),
         "user": {
             "id": obj["user"]["id"],
             "name": obj["user"]["name"],
             "screen_name": obj["user"]["screen_name"],
-            "location": obj["user"]["location"],
             "description": obj["user"]["description"],
             "followers_count": obj["user"]["followers_count"],
             "statuses_count": obj["user"]["statuses_count"],
             "friends_count": obj["user"]["friends_count"],
             "created_at": obj["user"]["created_at"]
-        }
+        },
+        "retweeted_status": preprocess_object(obj["retweeted_status"]) if recursive and "retweeted_status" in obj.keys() else None
     }
 
 
@@ -64,7 +62,7 @@ def file_to_data(file):
     with gzip.open(file) as lines:
         for line in lines:
             obj = json.loads(line)
-            yield preprocess_object(obj)
+            yield preprocess_object(obj, True)
 
 
 if __name__ == "__main__":
