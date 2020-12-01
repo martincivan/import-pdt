@@ -1,0 +1,64 @@
+{
+  "query": {
+    "function_score": {
+      "query": {
+        "bool": {
+          "must": {
+            "multi_match": {
+              "query": "gates s0ros vaccine micr0chip",
+              "fields": [
+                "user.name.shingle^6",
+                "full_text^8",
+                "user.description.shingle^6",
+                "user.screen_name.ngram^10"
+              ],
+              "operator": "or"
+            }
+          },
+          "filter": {
+            "bool": {
+              "must": {
+                "range": {
+                  "user.statuses_count": {
+                    "gt": 1000
+                  }
+                }
+              }
+            }
+          },
+          "should": {
+            "match": {
+              "mentions.name.ngram": {
+                "query": "real",
+                "boost": 10
+              }
+            }
+          }
+        }
+      },
+      "functions": [
+        {
+          "weight": 6,
+          "filter": {
+            "range": {
+              "retweet_count": {
+                "gte": 100,
+                "lte": 500
+              }
+            }
+          }
+        },
+        {
+          "weight": 3,
+          "filter": {
+            "range": {
+              "user.followers_count": {
+                "gt": 100
+              }
+            }
+          }
+        }
+      ]
+    }
+  }
+}

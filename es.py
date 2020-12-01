@@ -8,7 +8,7 @@ from tqdm import tqdm
 
 from mapping import mapping
 
-DATA = "/run/media/martin/a2ea889e-257f-4584-9011-cac4516c42e5/pdt/"
+DATA = "/run/media/martin/a603269a-a5d0-40eb-8191-cb1daaa1df8e/home/martin/PDT/"
 INDEX = "twindex_1"
 
 
@@ -23,22 +23,20 @@ def create_actions(generator):
 
 def process_file(file):
     for success, info in parallel_bulk(Elasticsearch(), create_actions(file_to_data(file=file)), request_timeout=60):
-        if not success:
+        if not success or info["index"]["status"] not in (200, 201):
             print("Insert failed: ", info)
         # print("insert successfull")
 
 
-def preprocess_object(obj, recursive=False):
-    return {
-        "id": obj["id"],
+def preprocess_object(obj):
+    return [{
+        "id": obj["id_str"],
         "created_at": obj["created_at"],
         "full_text": obj["full_text"],
-        "entities": {
-            "hashtags": list(map(lambda o: o["text"], obj["entities"]["hashtags"])),
-            "user_mentions": list(
-                map(lambda o: {"screen_name": o["screen_name"], "name": o["name"], "id": o["id"]},
-                    obj["entities"]["user_mentions"]))
-        },
+        "hashtags": list(map(lambda o: o["text"], obj["entities"]["hashtags"])),
+        "user_mentions": list(
+            map(lambda o: {"screen_name": o["screen_name"], "name": o["name"], "id": o["id"]},
+                obj["entities"]["user_mentions"])),
         "coordinates": obj["coordinates"]["coordinates"] if obj["coordinates"] is not None else None,
         "source": obj["source"],
         "in_reply_to_status_id": obj["in_reply_to_status_id"],
@@ -54,17 +52,23 @@ def preprocess_object(obj, recursive=False):
             "friends_count": obj["user"]["friends_count"],
             "created_at": obj["user"]["created_at"]
         },
-        "retweeted_status": preprocess_object(obj["retweeted_status"]) if recursive and "retweeted_status" in obj.keys() else None
-    }
+        "parent_id": obj["retweeted_status"]["id"] if "retweeted_status" in obj.keys() else None
+    }] + (preprocess_object(obj["retweeted_status"]) if "retweeted_status" in obj.keys() else [])
 
 
 def file_to_data(file):
+    global celkom
     with gzip.open(file) as lines:
+        pocet = 0
         for line in lines:
             obj = json.loads(line)
-            yield preprocess_object(obj, True)
+            for result in preprocess_object(obj):
+                pocet +=1
+                yield result
+    print("Pocet: " + str(pocet))
+    celkom += pocet
 
-
+celkom = 0
 if __name__ == "__main__":
     es = Elasticsearch()
     try:
@@ -79,3 +83,4 @@ if __name__ == "__main__":
         process_file(DATA + i, )
     # pool.close()
     # pool.join()
+    print("Celkom: " + str(celkom))
