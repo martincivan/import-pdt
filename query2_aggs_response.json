@@ -1,0 +1,399 @@
+{
+  "took": 2956,
+  "timed_out": false,
+  "_shards": {
+    "total": 3,
+    "successful": 3,
+    "skipped": 0,
+    "failed": 0
+  },
+  "hits": {
+    "total": {
+      "value": 10000,
+      "relation": "gte"
+    },
+    "max_score": 2006.421,
+    "hits": [
+      {
+        "_index": "twindex_1",
+        "_type": "_doc",
+        "_id": "1291756851244101632",
+        "_score": 2006.421,
+        "_source": {
+          "id": "1291756851244101632",
+          "created_at": "Fri Aug 07 15:23:27 +0000 2020",
+          "full_text": "the Gates Foundation Teamed Up With a Vaccine Maker to make a coronavirus vaccine available to poorer countries for less than $3 a dose.\n\nTHANK YOU, Gates Foundation",
+          "hashtags": [],
+          "user_mentions": [],
+          "coordinates": null,
+          "source": "<a href=\"https://mobile.twitter.com\" rel=\"nofollow\">Twitter Web App</a>",
+          "in_reply_to_status_id": null,
+          "retweet_count": 169,
+          "favorite_count": 521,
+          "user": {
+            "id": 4878610324,
+            "name": "PoliticsVideoChannel",
+            "screen_name": "politvidchannel",
+            "description": "this is the Account of the Channel on Youtube Called Politics Video Channel",
+            "followers_count": 113716,
+            "statuses_count": 13835,
+            "friends_count": 51257,
+            "created_at": "Fri Feb 05 19:25:44 +0000 2016"
+          },
+          "parent_id": null
+        }
+      },
+      {
+        "_index": "twindex_1",
+        "_type": "_doc",
+        "_id": "1290732444480675840",
+        "_score": 1897.2976,
+        "_source": {
+          "id": "1290732444480675840",
+          "created_at": "Tue Aug 04 19:32:50 +0000 2020",
+          "full_text": "Who thinks Fauci and Bill Gates be the first to get the Covid vaccine?",
+          "hashtags": [],
+          "user_mentions": [],
+          "coordinates": null,
+          "source": "<a href=\"http://twitter.com/download/iphone\" rel=\"nofollow\">Twitter for iPhone</a>",
+          "in_reply_to_status_id": null,
+          "retweet_count": 485,
+          "favorite_count": 1320,
+          "user": {
+            "id": 1110193840051445760,
+            "name": "Squirrel Mama🐿",
+            "screen_name": "Squill_whispers",
+            "description": "#Mama Christian 🙏 #LTC 🇺🇸 #RollTide🐘Trump2020🇺🇸 2A #NoSharia, 🇺🇸RTD by @SeanHannity, @ChuckWoolery, 🇺🇸 #MAGA 🇺🇸#BackTheBlue 🇺🇸Trump my Prez",
+            "followers_count": 69745,
+            "statuses_count": 100742,
+            "friends_count": 52987,
+            "created_at": "Mon Mar 25 14:56:52 +0000 2019"
+          },
+          "parent_id": null
+        }
+      },
+      {
+        "_index": "twindex_1",
+        "_type": "_doc",
+        "_id": "1291281549246320640",
+        "_score": 1887.8641,
+        "_source": {
+          "id": "1291281549246320640",
+          "created_at": "Thu Aug 06 07:54:46 +0000 2020",
+          "full_text": "RT @JeffereyJaxen: Interesting to see how media is using vaccine injury, something they've denied for years, as a major narrative right now…",
+          "hashtags": [],
+          "user_mentions": [
+            {
+              "screen_name": "JeffereyJaxen",
+              "name": "Jefferey Jaxen",
+              "id": 1498659234
+            }
+          ],
+          "coordinates": null,
+          "source": "<a href=\"https://mobile.twitter.com\" rel=\"nofollow\">Twitter Web App</a>",
+          "in_reply_to_status_id": null,
+          "retweet_count": 167,
+          "favorite_count": 0,
+          "user": {
+            "id": 2269665366,
+            "name": "Angela Waterford 🌺 #KBF",
+            "screen_name": "Waterford212",
+            "description": "Proud Grandma, Wife and Mum, Awake not woke, Brexit all the way, No to Gates’ vaccine ☠️ Co2 is innocent - 5G Kills -retweet’s not necessarily endorsements.",
+            "followers_count": 321,
+            "statuses_count": 5804,
+            "friends_count": 796,
+            "created_at": "Tue Dec 31 01:30:19 +0000 2013"
+          },
+          "parent_id": 1291001435811979265
+        }
+      },
+      {
+        "_index": "twindex_1",
+        "_type": "_doc",
+        "_id": "1291870585946017792",
+        "_score": 1868.3041,
+        "_source": {
+          "id": "1291870585946017792",
+          "created_at": "Fri Aug 07 22:55:24 +0000 2020",
+          "full_text": "RT @politvidchannel: the Gates Foundation Teamed Up With a Vaccine Maker to make a coronavirus vaccine available to poorer countries for le…",
+          "hashtags": [],
+          "user_mentions": [
+            {
+              "screen_name": "politvidchannel",
+              "name": "PoliticsVideoChannel",
+              "id": 4878610324
+            }
+          ],
+          "coordinates": null,
+          "source": "<a href=\"http://twitter.com/download/android\" rel=\"nofollow\">Twitter for Android</a>",
+          "in_reply_to_status_id": null,
+          "retweet_count": 169,
+          "favorite_count": 0,
+          "user": {
+            "id": 2987658749,
+            "name": "Nate from South Minneapolis #BidenHarris2020",
+            "screen_name": "nate_fight2020",
+            "description": "I know the police cause you trouble\nThey cause trouble everywhere\nBut when you die and go to heaven\nYou find no policeman there\n\n-Woody Guthrie",
+            "followers_count": 4352,
+            "statuses_count": 104357,
+            "friends_count": 4999,
+            "created_at": "Tue Jan 20 18:03:45 +0000 2015"
+          },
+          "parent_id": 1291756851244101632
+        }
+      },
+      {
+        "_index": "twindex_1",
+        "_type": "_doc",
+        "_id": "1291857441345490945",
+        "_score": 1868.3041,
+        "_source": {
+          "id": "1291857441345490945",
+          "created_at": "Fri Aug 07 22:03:10 +0000 2020",
+          "full_text": "RT @politvidchannel: the Gates Foundation Teamed Up With a Vaccine Maker to make a coronavirus vaccine available to poorer countries for le…",
+          "hashtags": [],
+          "user_mentions": [
+            {
+              "screen_name": "politvidchannel",
+              "name": "PoliticsVideoChannel",
+              "id": 4878610324
+            }
+          ],
+          "coordinates": null,
+          "source": "<a href=\"http://twitter.com/download/iphone\" rel=\"nofollow\">Twitter for iPhone</a>",
+          "in_reply_to_status_id": null,
+          "retweet_count": 169,
+          "favorite_count": 0,
+          "user": {
+            "id": 1627727276,
+            "name": "michelle alley",
+            "screen_name": "Alleyoooooops",
+            "description": "",
+            "followers_count": 427,
+            "statuses_count": 94333,
+            "friends_count": 506,
+            "created_at": "Sun Jul 28 11:51:34 +0000 2013"
+          },
+          "parent_id": 1291756851244101632
+        }
+      },
+      {
+        "_index": "twindex_1",
+        "_type": "_doc",
+        "_id": "1291866421241229312",
+        "_score": 1868.3041,
+        "_source": {
+          "id": "1291866421241229312",
+          "created_at": "Fri Aug 07 22:38:51 +0000 2020",
+          "full_text": "RT @politvidchannel: the Gates Foundation Teamed Up With a Vaccine Maker to make a coronavirus vaccine available to poorer countries for le…",
+          "hashtags": [],
+          "user_mentions": [
+            {
+              "screen_name": "politvidchannel",
+              "name": "PoliticsVideoChannel",
+              "id": 4878610324
+            }
+          ],
+          "coordinates": null,
+          "source": "<a href=\"http://twitter.com/download/iphone\" rel=\"nofollow\">Twitter for iPhone</a>",
+          "in_reply_to_status_id": null,
+          "retweet_count": 169,
+          "favorite_count": 0,
+          "user": {
+            "id": 16456783,
+            "name": "MEW2015",
+            "screen_name": "Michele6360",
+            "description": "",
+            "followers_count": 240,
+            "statuses_count": 16991,
+            "friends_count": 1177,
+            "created_at": "Thu Sep 25 19:47:16 +0000 2008"
+          },
+          "parent_id": 1291756851244101632
+        }
+      },
+      {
+        "_index": "twindex_1",
+        "_type": "_doc",
+        "_id": "1291863513963667462",
+        "_score": 1860.1199,
+        "_source": {
+          "id": "1291863513963667462",
+          "created_at": "Fri Aug 07 22:27:18 +0000 2020",
+          "full_text": "RT @politvidchannel: the Gates Foundation Teamed Up With a Vaccine Maker to make a coronavirus vaccine available to poorer countries for le…",
+          "hashtags": [],
+          "user_mentions": [
+            {
+              "screen_name": "politvidchannel",
+              "name": "PoliticsVideoChannel",
+              "id": 4878610324
+            }
+          ],
+          "coordinates": null,
+          "source": "<a href=\"http://twitter.com/download/iphone\" rel=\"nofollow\">Twitter for iPhone</a>",
+          "in_reply_to_status_id": null,
+          "retweet_count": 169,
+          "favorite_count": 0,
+          "user": {
+            "id": 1236988056542068736,
+            "name": "92Flyer",
+            "screen_name": "UDalum92",
+            "description": "",
+            "followers_count": 104,
+            "statuses_count": 8886,
+            "friends_count": 863,
+            "created_at": "Mon Mar 09 12:11:59 +0000 2020"
+          },
+          "parent_id": 1291756851244101632
+        }
+      },
+      {
+        "_index": "twindex_1",
+        "_type": "_doc",
+        "_id": "1288093900738043905",
+        "_score": 1846.2866,
+        "_source": {
+          "id": "1288093900738043905",
+          "created_at": "Tue Jul 28 12:48:12 +0000 2020",
+          "full_text": "TRUST GOD - NOT GATES!!!\n\nVaccine oligarch Bill Gates expressed apathy in a CBS interview about the fact that his Moderna Coronavirus vaccine is testing horribly in vaccine trials, with at least 80 percent of trial subjects reportedly suffering side effects https://t.co/drq2SBqzEn",
+          "hashtags": [],
+          "user_mentions": [],
+          "coordinates": null,
+          "source": "<a href=\"https://mobile.twitter.com\" rel=\"nofollow\">Twitter Web App</a>",
+          "in_reply_to_status_id": null,
+          "retweet_count": 348,
+          "favorite_count": 322,
+          "user": {
+            "id": 65973771,
+            "name": "✨🌷Lori Rhae🌷✨",
+            "screen_name": "LoriRhae",
+            "description": "Christian, Conservative, Patriot, Nationalist. I Love my Country! Pro-Life - ❌Defund Planned Parenthood ❌BAN Sharia  #StandWithIsrael #SquadSwatter",
+            "followers_count": 21582,
+            "statuses_count": 117340,
+            "friends_count": 20970,
+            "created_at": "Sat Aug 15 20:42:17 +0000 2009"
+          },
+          "parent_id": null
+        }
+      },
+      {
+        "_index": "twindex_1",
+        "_type": "_doc",
+        "_id": "1289680777949491200",
+        "_score": 1845.6433,
+        "_source": {
+          "id": "1289680777949491200",
+          "created_at": "Sat Aug 01 21:53:53 +0000 2020",
+          "full_text": "RT @LoriRhae: TRUST GOD - NOT GATES!!!\n\nVaccine oligarch Bill Gates expressed apathy in a CBS interview about the fact that his Moderna Cor…",
+          "hashtags": [],
+          "user_mentions": [
+            {
+              "screen_name": "LoriRhae",
+              "name": "✨🌷Lori Rhae🌷✨",
+              "id": 65973771
+            }
+          ],
+          "coordinates": null,
+          "source": "<a href=\"https://mobile.twitter.com\" rel=\"nofollow\">Twitter Web App</a>",
+          "in_reply_to_status_id": null,
+          "retweet_count": 349,
+          "favorite_count": 0,
+          "user": {
+            "id": 822870565866258433,
+            "name": "🇺🇸 America First 🇺🇸",
+            "screen_name": "RonSowers1",
+            "description": "I, Ron Sowers, confess that Jesus Christ is come in the flesh \\O/ \n\"We have it in our power to begin the world over again.\" Thomas Paine\n\"God is on our side.\" Q",
+            "followers_count": 1705,
+            "statuses_count": 81191,
+            "friends_count": 2123,
+            "created_at": "Sat Jan 21 18:16:45 +0000 2017"
+          },
+          "parent_id": 1288093900738043905
+        }
+      },
+      {
+        "_index": "twindex_1",
+        "_type": "_doc",
+        "_id": "1289741840694906880",
+        "_score": 1845.6433,
+        "_source": {
+          "id": "1289741840694906880",
+          "created_at": "Sun Aug 02 01:56:31 +0000 2020",
+          "full_text": "RT @LoriRhae: TRUST GOD - NOT GATES!!!\n\nVaccine oligarch Bill Gates expressed apathy in a CBS interview about the fact that his Moderna Cor…",
+          "hashtags": [],
+          "user_mentions": [
+            {
+              "screen_name": "LoriRhae",
+              "name": "✨🌷Lori Rhae🌷✨",
+              "id": 65973771
+            }
+          ],
+          "coordinates": null,
+          "source": "<a href=\"http://twitter.com/download/android\" rel=\"nofollow\">Twitter for Android</a>",
+          "in_reply_to_status_id": null,
+          "retweet_count": 349,
+          "favorite_count": 0,
+          "user": {
+            "id": 869176992,
+            "name": "Deplorable mglessman",
+            "screen_name": "mglessman",
+            "description": "Believer, Conservative, Likes are the Founders n those who support the Constitution.🇺🇸",
+            "followers_count": 25814,
+            "statuses_count": 335789,
+            "friends_count": 24040,
+            "created_at": "Tue Oct 09 04:01:28 +0000 2012"
+          },
+          "parent_id": 1288093900738043905
+        }
+      }
+    ]
+  },
+  "aggregations": {
+    "hashtags": {
+      "doc_count_error_upper_bound": 4508,
+      "sum_other_doc_count": 1877999,
+      "buckets": [
+        {
+          "key": "COVID19",
+          "doc_count": 296098
+        },
+        {
+          "key": "coronavirus",
+          "doc_count": 81482
+        },
+        {
+          "key": "Covid19",
+          "doc_count": 39772
+        },
+        {
+          "key": "Coronavirus",
+          "doc_count": 29985
+        },
+        {
+          "key": "COVID",
+          "doc_count": 24938
+        },
+        {
+          "key": "covid19",
+          "doc_count": 24391
+        },
+        {
+          "key": "Corona",
+          "doc_count": 15223
+        },
+        {
+          "key": "Covid_19",
+          "doc_count": 14030
+        },
+        {
+          "key": "COVID__19",
+          "doc_count": 13946
+        },
+        {
+          "key": "Covid",
+          "doc_count": 11949
+        }
+      ]
+    }
+  }
+}
