@@ -1,0 +1,234 @@
+{
+  "took": 264,
+  "timed_out": false,
+  "_shards": {
+    "total": 3,
+    "successful": 3,
+    "skipped": 0,
+    "failed": 0
+  },
+  "hits": {
+    "total": {
+      "value": 10000,
+      "relation": "gte"
+    },
+    "max_score": null,
+    "hits": []
+  },
+  "aggregations": {
+    "clowns": {
+      "buckets": [
+        {
+          "key_as_string": "Sat Aug 01 00:00:00 +0000 2020",
+          "key": 1596240000000,
+          "doc_count": 1327513,
+          "candidates": {
+            "buckets": {
+              "biden": {
+                "doc_count": 486,
+                "retweets": {
+                  "value": 1598244.0
+                }
+              },
+              "trump": {
+                "doc_count": 1249,
+                "retweets": {
+                  "value": 6185419.0
+                }
+              }
+            }
+          }
+        },
+        {
+          "key_as_string": "Sun Aug 02 00:00:00 +0000 2020",
+          "key": 1596326400000,
+          "doc_count": 531051,
+          "candidates": {
+            "buckets": {
+              "biden": {
+                "doc_count": 197,
+                "retweets": {
+                  "value": 793057.0
+                }
+              },
+              "trump": {
+                "doc_count": 543,
+                "retweets": {
+                  "value": 2755798.0
+                }
+              }
+            }
+          }
+        },
+        {
+          "key_as_string": "Mon Aug 03 00:00:00 +0000 2020",
+          "key": 1596412800000,
+          "doc_count": 536268,
+          "candidates": {
+            "buckets": {
+              "biden": {
+                "doc_count": 215,
+                "retweets": {
+                  "value": 811699.0
+                }
+              },
+              "trump": {
+                "doc_count": 517,
+                "retweets": {
+                  "value": 2784705.0
+                }
+              }
+            }
+          }
+        },
+        {
+          "key_as_string": "Tue Aug 04 00:00:00 +0000 2020",
+          "key": 1596499200000,
+          "doc_count": 1200860,
+          "candidates": {
+            "buckets": {
+              "biden": {
+                "doc_count": 555,
+                "retweets": {
+                  "value": 1399880.0
+                }
+              },
+              "trump": {
+                "doc_count": 1075,
+                "retweets": {
+                  "value": 4338667.0
+                }
+              }
+            }
+          }
+        },
+        {
+          "key_as_string": "Wed Aug 05 00:00:00 +0000 2020",
+          "key": 1596585600000,
+          "doc_count": 991140,
+          "candidates": {
+            "buckets": {
+              "biden": {
+                "doc_count": 325,
+                "retweets": {
+                  "value": 1766773.0
+                }
+              },
+              "trump": {
+                "doc_count": 733,
+                "retweets": {
+                  "value": 4151681.0
+                }
+              }
+            }
+          }
+        },
+        {
+          "key_as_string": "Thu Aug 06 00:00:00 +0000 2020",
+          "key": 1596672000000,
+          "doc_count": 510709,
+          "candidates": {
+            "buckets": {
+              "biden": {
+                "doc_count": 216,
+                "retweets": {
+                  "value": 798511.0
+                }
+              },
+              "trump": {
+                "doc_count": 400,
+                "retweets": {
+                  "value": 1371427.0
+                }
+              }
+            }
+          }
+        },
+        {
+          "key_as_string": "Fri Aug 07 00:00:00 +0000 2020",
+          "key": 1596758400000,
+          "doc_count": 376438,
+          "candidates": {
+            "buckets": {
+              "biden": {
+                "doc_count": 197,
+                "retweets": {
+                  "value": 602131.0
+                }
+              },
+              "trump": {
+                "doc_count": 415,
+                "retweets": {
+                  "value": 3904163.0
+                }
+              }
+            }
+          }
+        },
+        {
+          "key_as_string": "Sat Aug 08 00:00:00 +0000 2020",
+          "key": 1596844800000,
+          "doc_count": 531053,
+          "candidates": {
+            "buckets": {
+              "biden": {
+                "doc_count": 219,
+                "retweets": {
+                  "value": 813588.0
+                }
+              },
+              "trump": {
+                "doc_count": 603,
+                "retweets": {
+                  "value": 2208937.0
+                }
+              }
+            }
+          }
+        },
+        {
+          "key_as_string": "Sun Aug 09 00:00:00 +0000 2020",
+          "key": 1596931200000,
+          "doc_count": 705989,
+          "candidates": {
+            "buckets": {
+              "biden": {
+                "doc_count": 312,
+                "retweets": {
+                  "value": 772198.0
+                }
+              },
+              "trump": {
+                "doc_count": 657,
+                "retweets": {
+                  "value": 2717971.0
+                }
+              }
+            }
+          }
+        },
+        {
+          "key_as_string": "Mon Aug 10 00:00:00 +0000 2020",
+          "key": 1597017600000,
+          "doc_count": 161526,
+          "candidates": {
+            "buckets": {
+              "biden": {
+                "doc_count": 65,
+                "retweets": {
+                  "value": 474138.0
+                }
+              },
+              "trump": {
+                "doc_count": 133,
+                "retweets": {
+                  "value": 1090241.0
+                }
+              }
+            }
+          }
+        }
+      ]
+    }
+  }
+}

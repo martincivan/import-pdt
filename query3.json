@@ -1,0 +1,44 @@
+{
+  "size": 0,
+  "query": {
+    "range": {
+      "created_at": {
+        "gte": "Wed Aug 01 00:00:00 +0000 2020",
+        "lt": "Tue Sep 01 00:00:00 +0000 2020"
+      }
+    }
+  },
+  "aggs": {
+    "clowns": {
+      "date_histogram": {
+        "field": "created_at",
+        "calendar_interval": "1d"
+      },
+      "aggs": {
+        "candidates": {
+          "filters": {
+            "filters": {
+              "biden": {
+                "match_phrase": {
+                  "user.description": "Joe Biden"
+                }
+              },
+              "trump": {
+                "match_phrase": {
+                  "user.description": "Donald Trump"
+                }
+              }
+            }
+          },
+          "aggs": {
+            "retweets": {
+              "sum": {
+                "field": "retweet_count"
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,367 @@
+{
+  "took": 710,
+  "timed_out": false,
+  "_shards": {
+    "total": 3,
+    "successful": 3,
+    "skipped": 0,
+    "failed": 0
+  },
+  "hits": {
+    "total": {
+      "value": 10000,
+      "relation": "gte"
+    },
+    "max_score": 1759.7285,
+    "hits": [
+      {
+        "_index": "twindex_1",
+        "_type": "_doc",
+        "_id": "1288063900567699458",
+        "_score": 1759.7285,
+        "_source": {
+          "id": "1288063900567699458",
+          "created_at": "Tue Jul 28 10:48:59 +0000 2020",
+          "full_text": "#COVID19: Hydroxychloroquine, Zinc and Zithromax, yet some are still waiting for Bill Gates and Fauci vaccine.",
+          "hashtags": [
+            "COVID19"
+          ],
+          "user_mentions": [],
+          "coordinates": null,
+          "source": "<a href=\"http://twitter.com/download/android\" rel=\"nofollow\">Twitter for Android</a>",
+          "in_reply_to_status_id": null,
+          "retweet_count": 257,
+          "favorite_count": 704,
+          "user": {
+            "id": 59755457,
+            "name": "Ayemojubar 👠",
+            "screen_name": "ayemojubar",
+            "description": "I'm not here to be liked. I can be the best thing that happens to you on this street, I can also be your worst nightmare. Member of the #4thArmOfGovt🎗️.",
+            "followers_count": 47672,
+            "statuses_count": 110651,
+            "friends_count": 35283,
+            "created_at": "Fri Jul 24 11:20:44 +0000 2009"
+          },
+          "parent_id": null
+        }
+      },
+      {
+        "_index": "twindex_1",
+        "_type": "_doc",
+        "_id": "1290583710451019778",
+        "_score": 1670.9928,
+        "_source": {
+          "id": "1290583710451019778",
+          "created_at": "Tue Aug 04 09:41:49 +0000 2020",
+          "full_text": "RT @ayemojubar: #COVID19: Hydroxychloroquine, Zinc and Zithromax, yet some are still waiting for Bill Gates and Fauci vaccine.",
+          "hashtags": [
+            "COVID19"
+          ],
+          "user_mentions": [
+            {
+              "screen_name": "ayemojubar",
+              "name": "Ayemojubar 👠",
+              "id": 59755457
+            }
+          ],
+          "coordinates": null,
+          "source": "<a href=\"http://twitter.com/download/android\" rel=\"nofollow\">Twitter for Android</a>",
+          "in_reply_to_status_id": null,
+          "retweet_count": 257,
+          "favorite_count": 0,
+          "user": {
+            "id": 1476865112,
+            "name": "Malam Basharu✈️",
+            "screen_name": "Dadycool09",
+            "description": "Private Pilot NR. Fmr. assistant class Captain. .Future Airline Captain.. #Pilot #Avgeek #FCB Flying🐝",
+            "followers_count": 570,
+            "statuses_count": 14083,
+            "friends_count": 644,
+            "created_at": "Sun Jun 02 09:17:23 +0000 2013"
+          },
+          "parent_id": 1288063900567699458
+        }
+      },
+      {
+        "_index": "twindex_1",
+        "_type": "_doc",
+        "_id": "1290015348570324993",
+        "_score": 1529.5021,
+        "_source": {
+          "id": "1290015348570324993",
+          "created_at": "Sun Aug 02 20:03:21 +0000 2020",
+          "full_text": "“Normalcy will only return when we've largely vaccinated the ENTIRE global population” - Bill Gates \n\n#Covid19 #BillGates #COVID19 https://t.co/7Z0V07B8d7",
+          "hashtags": [
+            "Covid19",
+            "BillGates",
+            "COVID19"
+          ],
+          "user_mentions": [],
+          "coordinates": null,
+          "source": "<a href=\"http://twitter.com/download/iphone\" rel=\"nofollow\">Twitter for iPhone</a>",
+          "in_reply_to_status_id": null,
+          "retweet_count": 135,
+          "favorite_count": 208,
+          "user": {
+            "id": 40638800,
+            "name": "Jim Corr",
+            "screen_name": "Jimcorrsays",
+            "description": "Official Jim Corr Twitter account. Musician. Pilot. Vegetarian. ProSafeVax. Pro-life. Zero troll tolerance. Views my own.",
+            "followers_count": 37957,
+            "statuses_count": 16570,
+            "friends_count": 2072,
+            "created_at": "Sun May 17 10:18:31 +0000 2009"
+          },
+          "parent_id": null
+        }
+      },
+      {
+        "_index": "twindex_1",
+        "_type": "_doc",
+        "_id": "1291651105772802048",
+        "_score": 1418.5168,
+        "_source": {
+          "id": "1291651105772802048",
+          "created_at": "Fri Aug 07 08:23:15 +0000 2020",
+          "full_text": "Serum Institute of India (SII) enters into a new landmark partnership with Gavi, The Vaccine Alliance and the Bill &amp; Melinda Gates Foundation, to accelerate the manufacture and delivery of up to 100 million doses of #COVID19 vaccines for India and low &amp; income countries: SII https://t.co/U8PIOIyj0w",
+          "hashtags": [
+            "COVID19"
+          ],
+          "user_mentions": [],
+          "coordinates": null,
+          "source": "<a href=\"https://mobile.twitter.com\" rel=\"nofollow\">Twitter Web App</a>",
+          "in_reply_to_status_id": null,
+          "retweet_count": 286,
+          "favorite_count": 1499,
+          "user": {
+            "id": 355989081,
+            "name": "ANI",
+            "screen_name": "ANI",
+            "description": "Asian News International. Multi-media news agency, content for information platforms: TV, Internet, broadband, newspapers, mobiles https://t.co/PjGRhL4qvg",
+            "followers_count": 4835049,
+            "statuses_count": 427634,
+            "friends_count": 0,
+            "created_at": "Tue Aug 16 05:23:41 +0000 2011"
+          },
+          "parent_id": null
+        }
+      },
+      {
+        "_index": "twindex_1",
+        "_type": "_doc",
+        "_id": "1290583310897381378",
+        "_score": 1356.6665,
+        "_source": {
+          "id": "1290583310897381378",
+          "created_at": "Tue Aug 04 09:40:13 +0000 2020",
+          "full_text": "RT @SkyNews: Reopening schools fully in September without an effective test, trace and isolating strategy could result in a second #COVID19…",
+          "hashtags": [
+            "COVID19"
+          ],
+          "user_mentions": [
+            {
+              "screen_name": "SkyNews",
+              "name": "SkyNews",
+              "id": 7587032
+            }
+          ],
+          "coordinates": null,
+          "source": "<a href=\"https://mobile.twitter.com\" rel=\"nofollow\">Twitter Web App</a>",
+          "in_reply_to_status_id": null,
+          "retweet_count": 229,
+          "favorite_count": 0,
+          "user": {
+            "id": 224613510,
+            "name": "_ maeL radec . 🧴 🧻",
+            "screen_name": "mael_radec77",
+            "description": "\" The future of money is digital \"  ~  Mr B Gates",
+            "followers_count": 729,
+            "statuses_count": 2676,
+            "friends_count": 4533,
+            "created_at": "Thu Dec 09 12:36:17 +0000 2010"
+          },
+          "parent_id": 1290545418280075264
+        }
+      },
+      {
+        "_index": "twindex_1",
+        "_type": "_doc",
+        "_id": "1286819522528206848",
+        "_score": 1350.1893,
+        "_source": {
+          "id": "1286819522528206848",
+          "created_at": "Sat Jul 25 00:24:16 +0000 2020",
+          "full_text": "This tweet by Bill Gates from Dec 19 2019 reveals his anticipation/certainty that 2020 will be a GREAT year for investing in vaccines.\nHow did he know about this provided that the #COVID19 outbreak and the enormous push for a corona-virus vaccine was months into the future? 🤔 https://t.co/3HfDRcweQz",
+          "hashtags": [
+            "COVID19"
+          ],
+          "user_mentions": [],
+          "coordinates": null,
+          "source": "<a href=\"https://mobile.twitter.com\" rel=\"nofollow\">Twitter Web App</a>",
+          "in_reply_to_status_id": null,
+          "retweet_count": 260,
+          "favorite_count": 329,
+          "user": {
+            "id": 884455440293269505,
+            "name": "Ned Nikolov, Ph.D.",
+            "screen_name": "NikolovScience",
+            "description": "Ph.D. Physical Scientist with a broad range of interests in various fields of science, i.e. climate, cosmology, astrophysics, nutrition, archaeology etc.",
+            "followers_count": 26649,
+            "statuses_count": 44230,
+            "friends_count": 73,
+            "created_at": "Mon Jul 10 16:53:04 +0000 2017"
+          },
+          "parent_id": null
+        }
+      },
+      {
+        "_index": "twindex_1",
+        "_type": "_doc",
+        "_id": "1286738744532275200",
+        "_score": 1250.512,
+        "_source": {
+          "id": "1286738744532275200",
+          "created_at": "Fri Jul 24 19:03:17 +0000 2020",
+          "full_text": "The @WorldBank’s support of @CEPIvaccines and @gavi is instrumental to the research and development of the #COVID19 vaccine. https://t.co/F7ZUG2MCaW",
+          "hashtags": [
+            "COVID19"
+          ],
+          "user_mentions": [
+            {
+              "screen_name": "WorldBank",
+              "name": "World Bank",
+              "id": 27860681
+            },
+            {
+              "screen_name": "CEPIvaccines",
+              "name": "CEPI",
+              "id": 784351656355897344
+            },
+            {
+              "screen_name": "gavi",
+              "name": "Gavi, the Vaccine Alliance",
+              "id": 97219875
+            }
+          ],
+          "coordinates": null,
+          "source": "<a href=\"https://mobile.twitter.com\" rel=\"nofollow\">Twitter Web App</a>",
+          "in_reply_to_status_id": null,
+          "retweet_count": 108,
+          "favorite_count": 727,
+          "user": {
+            "id": 2778917545,
+            "name": "Trevor Mundel",
+            "screen_name": "trevormundel",
+            "description": "President of Global Health at the Bill & Melinda Gates Foundation. Science is my passion.",
+            "followers_count": 12172,
+            "statuses_count": 2588,
+            "friends_count": 981,
+            "created_at": "Fri Aug 29 18:05:17 +0000 2014"
+          },
+          "parent_id": null
+        }
+      },
+      {
+        "_index": "twindex_1",
+        "_type": "_doc",
+        "_id": "1288211682364461058",
+        "_score": 1202.5951,
+        "_source": {
+          "id": "1288211682364461058",
+          "created_at": "Tue Jul 28 20:36:13 +0000 2020",
+          "full_text": "Bill Gates : Le vaccin du #COVID19 modifiera notre ARN et ADN avec la nano-technologie ! 👇(un brevet a été déposé par Microsoft avec le numéro 060606🤔...)\n#Trump https://t.co/sDDLvVxyBW",
+          "hashtags": [
+            "COVID19",
+            "Trump"
+          ],
+          "user_mentions": [],
+          "coordinates": null,
+          "source": "<a href=\"https://mobile.twitter.com\" rel=\"nofollow\">Twitter Web App</a>",
+          "in_reply_to_status_id": null,
+          "retweet_count": 137,
+          "favorite_count": 89,
+          "user": {
+            "id": 903009000740052994,
+            "name": "Frederic Lesueur 🇫🇷🇺🇸",
+            "screen_name": "Frederic1L1",
+            "description": "The truth is out there...\n#TRUMP2020 #DrainTheSwamp #MAGA  #Patriot #WWG1WGA  #Q #Socialismsucks #NoSharia #TeamPatriotes  IFB",
+            "followers_count": 20747,
+            "statuses_count": 32678,
+            "friends_count": 20004,
+            "created_at": "Wed Aug 30 21:38:17 +0000 2017"
+          },
+          "parent_id": null
+        }
+      },
+      {
+        "_index": "twindex_1",
+        "_type": "_doc",
+        "_id": "1283397168217370624",
+        "_score": 1183.4319,
+        "_source": {
+          "id": "1283397168217370624",
+          "created_at": "Wed Jul 15 13:45:03 +0000 2020",
+          "full_text": ".@melindagates outlines the steps to respond effectively to #COVID19 and build a more equal future for women and girls. https://t.co/jLYnjxlMKU",
+          "hashtags": [
+            "COVID19"
+          ],
+          "user_mentions": [
+            {
+              "screen_name": "melindagates",
+              "name": "Melinda Gates",
+              "id": 161801527
+            }
+          ],
+          "coordinates": null,
+          "source": "<a href=\"https://www.spredfast.com\" rel=\"nofollow\">Khoros Marketing</a>",
+          "in_reply_to_status_id": null,
+          "retweet_count": 100,
+          "favorite_count": 334,
+          "user": {
+            "id": 17899109,
+            "name": "Gates Foundation",
+            "screen_name": "gatesfoundation",
+            "description": "Goalkeepers brings together a new generation of leaders to accelerate progress toward the Global Goals.",
+            "followers_count": 2104372,
+            "statuses_count": 14832,
+            "friends_count": 936,
+            "created_at": "Fri Dec 05 15:19:15 +0000 2008"
+          },
+          "parent_id": null
+        }
+      },
+      {
+        "_index": "twindex_1",
+        "_type": "_doc",
+        "_id": "1291835683674312704",
+        "_score": 1183.4319,
+        "_source": {
+          "id": "1291835683674312704",
+          "created_at": "Fri Aug 07 20:36:42 +0000 2020",
+          "full_text": "Studies continue to prove that\n😷Mask-wearing +\n💧Handwashing +\n↔️Physical distancing\n\nhelps reduce the spread of\n#COVID19 in communities everywhere. \n\n#WorldMaskWeek https://t.co/vnP6prx8f0",
+          "hashtags": [
+            "COVID19",
+            "WorldMaskWeek"
+          ],
+          "user_mentions": [],
+          "coordinates": null,
+          "source": "<a href=\"https://mobile.twitter.com\" rel=\"nofollow\">Twitter Web App</a>",
+          "in_reply_to_status_id": null,
+          "retweet_count": 104,
+          "favorite_count": 241,
+          "user": {
+            "id": 17899109,
+            "name": "Gates Foundation",
+            "screen_name": "gatesfoundation",
+            "description": "Goalkeepers brings together a new generation of leaders to accelerate progress toward the Global Goals.",
+            "followers_count": 2104618,
+            "statuses_count": 14832,
+            "friends_count": 936,
+            "created_at": "Fri Dec 05 15:19:15 +0000 2008"
+          },
+          "parent_id": null
+        }
+      }
+    ]
+  }
+}

@@ -1,44 +1,76 @@
 {
-  "size": 0,
   "query": {
-    "range": {
-      "created_at": {
-        "gte": "Wed Aug 01 00:00:00 +0000 2020",
-        "lt": "Tue Sep 01 00:00:00 +0000 2020"
-      }
-    }
-  },
-  "aggs": {
-    "clowns": {
-      "date_histogram": {
-        "field": "created_at",
-        "calendar_interval": "1d"
-      },
-      "aggs": {
-        "candidates": {
-          "filters" : {
-            "filters" : {
-              "biden" :   {
-                "match" : {
-                  "user.description" : "Joe Biden"
-                }
-              },
-              "trump" :   {
-                "match" : {
-                  "user.description" : "Donald Trump"
-                }
-              }
+    "function_score": {
+      "query": {
+        "bool": {
+          "must": {
+            "multi_match": {
+              "query": "gates s0ros vaccine micr0chip",
+              "fields": [
+                "user.name.shingle^6",
+                "full_text^8",
+                "user.description.shingle^6",
+                "user.screen_name.ngram^10"
+              ],
+              "operator": "or"
             }
           },
-          "aggs": {
-            "sales": {
-              "sum": {
-                "field": "retweet_count"
+          "filter": {
+            "bool": {
+              "must": [
+                {
+                  "range": {
+                    "user.statuses_count": {
+                      "gt": 1000
+                    }
+                  }
+                },
+                {
+                  "match": {
+                    "hashtags": "COVID19"
+                  }
+                }
+              ]
+            }
+          },
+          "should": {
+            "nested": {
+              "boost": 10,
+              "path": "user_mentions",
+              "query": {
+                "match": {
+                  "name.ngram": {
+                    "query": "real"
+                  }
+                }
               }
             }
           }
         }
-      }
+      },
+      "functions": [
+        {
+          "weight": 6,
+          "filter": {
+            "range": {
+              "retweet_count": {
+                "gte": 100,
+                "lte": 500
+              }
+            }
+          }
+        },
+        {
+          "weight": 3,
+          "filter": {
+            "range": {
+              "user.followers_count": {
+                "gt": 100
+              }
+            }
+          }
+        }
+      ]
     }
   }
 }

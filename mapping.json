@@ -1,0 +1,127 @@
+{
+  "twindex_1": {
+    "mappings": {
+      "dynamic": "strict",
+      "properties": {
+        "coordinates": {
+          "type": "geo_point"
+        },
+        "created_at": {
+          "type": "date",
+          "format": "EEE MMM dd HH:mm:ss Z yyyy"
+        },
+        "favorite_count": {
+          "type": "integer"
+        },
+        "full_text": {
+          "type": "text",
+          "analyzer": "englando"
+        },
+        "hashtags": {
+          "type": "keyword"
+        },
+        "id": {
+          "type": "unsigned_long"
+        },
+        "in_reply_to_screen_name": {
+          "type": "keyword"
+        },
+        "in_reply_to_status_id": {
+          "type": "unsigned_long"
+        },
+        "in_reply_to_user_id": {
+          "type": "unsigned_long"
+        },
+        "parent_id": {
+          "type": "unsigned_long"
+        },
+        "retweet_count": {
+          "type": "integer"
+        },
+        "source": {
+          "type": "keyword"
+        },
+        "user": {
+          "dynamic": "strict",
+          "properties": {
+            "created_at": {
+              "type": "date",
+              "format": "EEE MMM dd HH:mm:ss Z yyyy"
+            },
+            "description": {
+              "type": "text",
+              "fields": {
+                "shingle": {
+                  "type": "text",
+                  "analyzer": "custom_shingles"
+                }
+              },
+              "analyzer": "englando"
+            },
+            "followers_count": {
+              "type": "integer"
+            },
+            "friends_count": {
+              "type": "integer"
+            },
+            "id": {
+              "type": "unsigned_long"
+            },
+            "name": {
+              "type": "text",
+              "fields": {
+                "shingle": {
+                  "type": "text",
+                  "analyzer": "custom_shingles"
+                }
+              },
+              "analyzer": "custom_ngram"
+            },
+            "screen_name": {
+              "type": "text",
+              "fields": {
+                "ngram": {
+                  "type": "text",
+                  "analyzer": "custom_ngram"
+                }
+              },
+              "analyzer": "englando"
+            },
+            "statuses_count": {
+              "type": "integer"
+            }
+          }
+        },
+        "user_mentions": {
+          "type": "nested",
+          "dynamic": "strict",
+          "properties": {
+            "id": {
+              "type": "unsigned_long"
+            },
+            "name": {
+              "type": "text",
+              "fields": {
+                "ngram": {
+                  "type": "text",
+                  "analyzer": "custom_ngram"
+                }
+              },
+              "analyzer": "englando"
+            },
+            "screen_name": {
+              "type": "text",
+              "fields": {
+                "ngram": {
+                  "type": "text",
+                  "analyzer": "custom_ngram"
+                }
+              },
+              "analyzer": "englando"
+            }
+          }
+        }
+      }
+    }
+  }
+}
