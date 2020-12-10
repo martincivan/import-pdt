@@ -1,0 +1,45 @@
+2.
+MATCH(acc1:Account)-[f:FOLLOWS]->(acc2:Account) RETURN acc2, count(f) ORDER BY count(f) desc limit 10;
+
+3.
+MATCH(stryko_donald:Account{screen_name: 'realDonaldTrump'}), (kejty_pery:Account{screen_name: 'katyperry'})
+MATCH path=allShortestPaths((stryko_donald)-[:FOLLOWS*]-(kejty_pery))
+RETURN path;
+
+4.
+MATCH (()-[rr1:RETWEETS]->(success:Tweet)<-[:POSTS]-(influencer:Account))
+WITH influencer as inf, count(rr1) as retweets
+  ORDER BY count(rr1) desc LIMIT 10
+MATCH (()-[rr2:RETWEETS]->(fail:Tweet)<-[:POSTS]-(inf))
+RETURN fail, count(rr2) ORDER BY count(rr2) asc limit 20;
+
+5.
+MATCH ((stryko_donald:Account{screen_name: 'realDonaldTrump'})-[:POSTS]->(most_tweeted:Tweet)<-[rr1:RETWEETS]-())
+WITH stryko_donald, most_tweeted, count(rr1) as retweets
+  ORDER BY retweets DESC LIMIT 1
+CREATE (most_tweeted)<-[:RETWEETS]-(t:Tweet {content:"Vyrabam retweet aj ked ani neviem co to je :("})<-[:POSTS]-(a:Account {screen_name:"MartinCivan", name:"Martin Civan"})-[f:FOLLOWS]->(stryko_donald)
+
+6.
+MATCH ((jeff:Account{screen_name: '777stl'})-[jeffFollows:FOLLOWS]->(commonAcc:Account)<-[candidateFollows:FOLLOWS]-(candidate:Account))
+WHERE not (jeff)-[:FOLLOWS]->(candidate)
+WITH candidate, count(commonAcc) as common
+ORDER BY common DESC
+LIMIT 10
+return candidate, common
+
+7.
+MATCH ((dajner:Account{screen_name:"DaynerWilson"})-[:POSTS|RETWEETS*2..3]->(commonTweets:Tweet)<-[:POSTS|RETWEETS*2..3]-(candidate:Account))
+WHERE not (dajner)-[:FOLLOWS]->(candidate)
+WITH candidate, count(commonTweets) as common
+  ORDER BY common DESC
+  LIMIT 10
+return candidate, common
+
+8.
+MATCH ((posts:Tweet)<-[:POSTS]-(:Account)-[:FOLLOWS*1..5]->(:Account)-[:POSTS]->(theTweet:Tweet{id: "1289380305728503808"}))
+WHERE not (posts)-[:RETWEETS]->(theTweet)
+WITH posts, apoc.coll.intersection(split(toLower(posts.content), " "), split(toLower(theTweet.content), " ")) as intersection
+ORDER BY size(intersection) DESC
+LIMIT 10
+return posts, size(intersection)
+
